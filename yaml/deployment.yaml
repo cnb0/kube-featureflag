@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: featureflag-example
+  annotations:
+    businessFeature: implementation2
+spec:
+  containers:
+  - name: app
+    image: freegroup/kube-featureflag
+    volumeMounts:
+    - name: podinfo
+      mountPath: /etc/podinfo
+      readOnly: false
+  volumes:
+  - name: podinfo
+    downwardAPI:
+      items:
+      - path: "annotations"
+        fieldRef:
+          fieldPath: metadata.annotations
+
