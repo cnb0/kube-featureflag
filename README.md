@@ -26,10 +26,41 @@ to enable/disable application logic.
 
 
 ## How does this work
-We’ll use the Kubernetes downward-api to expose labels and annotations directly to our application. We’ll 
-end up with two files (`labels` and `annotations`) in `/etc/podinfo`. ( see [here](https://kubernetes.io/docs/tasks/inject-data-application/downward-api-volume-expose-pod-information/#the-downward-api) )
+We’ll use the Kubernetes [downwardAPI](https://kubernetes.io/docs/tasks/inject-data-application/downward-api-volume-expose-pod-information/#the-downward-api) ) to expose labels and annotations directly to our application. We’ll 
+end up with two files (`labels` and `annotations`) in `/etc/podinfo`. First we add the downward api to spec.volumes. 
+Note that it is possible to adding both labels and annotations into the same volume. 
 
-First we add the downward api to spec.volumes. Note that we’re adding both labels and annotations into the same volume. 
+## How to update/toggle the feature
+After the deployment of the demo application is done you can easily switch a feature in the application on or off. 
+This is done very easily with `kubectl` by changing an annotation in the Pods.
+
+### Deploy demo app/pod
+Deploy
+``` 
+kubectl apply -f ./yaml/deployment.yaml
+```
+
+Show the log
+``` 
+kubectl logs featureflag-example -f
+```
+
+
+### Toggle business feature flag
+Switch to business implementation 2
+```` 
+kubectl annotate --overwrite pod featureflag-example  businessFeature=implementation2
+````
+
+Switch to business implementation 1
+```` 
+kubectl annotate --overwrite pod featureflag-example  businessFeature=implementation1
+````
+
+As you can see in the log of the Pod the application switches very fast between the implementations. Everything 
+was controlled by annotations on the deployment or Pod. On the whole a very simple and maintainable solution to 
+configure parts of the application without restarting the whole application.
+
 
 ## Wrangling labels and annotations from the shell.
 
