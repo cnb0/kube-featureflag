@@ -35,28 +35,31 @@ After the deployment of the demo application is done you can easily switch a fea
 This is done very easily with `kubectl` by changing an annotation in the Pods.
 
 ### Deploy demo app/pod
-Deploy
+
 ``` 
 kubectl apply -f ./yaml/deployment.yaml
 ```
 
-Show the log
+### Show the log
+
 ``` 
 kubectl logs featureflag-example -f
 ```
 
 
-### Toggle business feature flag
-Switch to business implementation 2
+### Use business feature 2
+
 ```` 
 kubectl annotate --overwrite pod featureflag-example  businessFeature=implementation2
 ````
 
-Switch to business implementation 1
+### Use business feature 1
+
 ```` 
 kubectl annotate --overwrite pod featureflag-example  businessFeature=implementation1
 ````
 
+## Conclusion
 As you can see in the log of the Pod the application switches very fast between the implementations. Everything 
 was controlled by annotations on the deployment or Pod. On the whole a very simple and maintainable solution to 
 configure parts of the application without restarting the whole application.
