@@ -8,6 +8,8 @@ without significant effort on some platforms. **Kubernetes has made this trivial
 we will **implement them through labels and annotations**, but you can also implement 
 them by connecting directly to the Kubernetes API Server.
 
+![](images/teaser.gif)
+
 In Kubernetes, labels are part of the identity of a resource and can be used through 
 selectors. Annotations are similar, but do not participate in the identity of a resource and 
 cannot be used to select resources. Nevertheless, they can still be used as feature flags 
