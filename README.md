@@ -1,4 +1,4 @@
-# Feature Flags in Kubernetes
+# Feature Flags in Kubernetes Applications
 
 Feature flags are used to change the behavior of a program at runtime without forcing a 
 restart. 
