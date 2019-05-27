@@ -3,7 +3,7 @@ kind: Pod
 metadata:
   name: featureflag-example
   annotations:
-    businessFeature: implementation2
+    businessFeature: implementation1
 spec:
   containers:
   - name: app
