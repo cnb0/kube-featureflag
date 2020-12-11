@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/gardener-samples/kube-featureflag#readme",
   "dependencies": {
-    "ini": "^1.3.5"
+    "ini": "^1.3.6"
   }
 }
